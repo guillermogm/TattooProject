@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import { AppDataSource } from './database/db';
 
 
 
@@ -16,6 +17,14 @@ app.get('/healthy', (req, res) => {
     })
 })
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
-})
+AppDataSource.initialize()
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`)
+        })
+
+        console.log('Database connected');
+    })
+    .catch(error => {
+        console.log(error)
+    })
