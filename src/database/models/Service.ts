@@ -6,7 +6,7 @@ export class Service {
     id!:number
 
     @Column({name:"service_name"})
-    title!:string
+    serviceName!:string
 
     @Column({name:"description"})
     description!:string
