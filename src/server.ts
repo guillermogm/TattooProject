@@ -3,7 +3,7 @@ import express from 'express';
 import { AppDataSource } from './database/db';
 import { user } from './middlewares/user';
 import { superAdmin } from './middlewares/superAdmin';
-import { createService } from './controllers/services.controller';
+import { createService, getAllServices, updateService } from './controllers/services.controller';
 import { logInUser, signInUser } from './controllers/auth.controller';
 import { admin } from './middlewares/admin';
 
@@ -25,7 +25,9 @@ app.get("/healthy", (req, res) => {
 app.post("/api/auth/register", signInUser)
 app.post("/api/auth/login", logInUser)
 //Services
-app.post("/api/appointments",user,superAdmin, createService)
+app.get("/api/services",getAllServices)
+app.post("/api/services",user,superAdmin, createService)
+app.put("/api/services/:id", updateService)
 
 AppDataSource.initialize()
     .then(() => {
