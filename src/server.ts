@@ -27,8 +27,8 @@ app.post("/api/auth/login", logInUser)
 //Services
 app.get("/api/services",getAllServices)
 app.post("/api/services",user,superAdmin, createService)
-app.put("/api/services/:id", updateService)
-app.delete("/api/services/:id", deleteService)
+app.put("/api/services/:id",user,superAdmin, updateService)
+app.delete("/api/services/:id",user,superAdmin, deleteService)
 
 AppDataSource.initialize()
     .then(() => {
