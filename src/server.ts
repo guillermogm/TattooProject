@@ -4,6 +4,7 @@ import { AppDataSource } from './database/db';
 import { user } from './middlewares/user';
 import { superAdmin } from './middlewares/superAdmin';
 import { createService } from './controllers/services.controller';
+import { logInUser, signInUser } from './controllers/auth.controller';
 
 
 
@@ -19,7 +20,10 @@ app.get('/healthy', (req, res) => {
         message: "Server is working"
     })
 })
-
+// Auth
+app.post('/api/auth/register', signInUser)
+app.post('/api/auth/login', logInUser)
+//Services
 app.post("/api/appointments", createService)
 
 AppDataSource.initialize()
