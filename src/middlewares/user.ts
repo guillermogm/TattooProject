@@ -17,7 +17,7 @@ export const user= (req: Request,res: Response, next: NextFunction)=>{
 
     req.tokenData= {
         id: decoded.id,
-        role: decoded.role
+        roleId: decoded.roleId
     }
 
     next();

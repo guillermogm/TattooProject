@@ -1,6 +1,9 @@
 import 'dotenv/config';
 import express from 'express';
 import { AppDataSource } from './database/db';
+import { user } from './middlewares/user';
+import { superAdmin } from './middlewares/superAdmin';
+import { createService } from './controllers/services.controller';
 
 
 
@@ -16,6 +19,8 @@ app.get('/healthy', (req, res) => {
         message: "Server is working"
     })
 })
+
+app.post("/api/appointments",user,superAdmin, createService)
 
 AppDataSource.initialize()
     .then(() => {
