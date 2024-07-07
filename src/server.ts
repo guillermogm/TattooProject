@@ -6,6 +6,7 @@ import { superAdmin } from './middlewares/superAdmin';
 import { createService, deleteService, getAllServices, updateService } from './controllers/services.controller';
 import { logInUser, signInUser } from './controllers/auth.controller';
 import { admin } from './middlewares/admin';
+import { getProfileAppointments } from './controllers/appointments.controller';
 
 
 
@@ -21,14 +22,19 @@ app.get("/healthy", (req, res) => {
         message: "Server is working"
     })
 })
+
 // Auth
 app.post("/api/auth/register", signInUser)
 app.post("/api/auth/login", logInUser)
+
 //Services
 app.get("/api/services",getAllServices)
 app.post("/api/services",user,superAdmin, createService)
 app.put("/api/services/:id",user,superAdmin, updateService)
 app.delete("/api/services/:id",user,superAdmin, deleteService)
+
+//Appointments
+app.get("/api/appointments",user, getProfileAppointments)
 
 AppDataSource.initialize()
     .then(() => {
