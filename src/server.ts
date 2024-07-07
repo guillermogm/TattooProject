@@ -20,7 +20,7 @@ app.get('/healthy', (req, res) => {
     })
 })
 
-app.post("/api/appointments",user,superAdmin, createService)
+app.post("/api/appointments", createService)
 
 AppDataSource.initialize()
     .then(() => {

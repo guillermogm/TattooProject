@@ -1,9 +1,9 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { Role } from "./Role"
 import { Appointment } from "./Appointment"
 
 @Entity("users")
-export class User {
+export class User  extends BaseEntity{
     @PrimaryGeneratedColumn()
     id!:number
 
