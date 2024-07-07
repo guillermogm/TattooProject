@@ -3,7 +3,7 @@ import express from 'express';
 import { AppDataSource } from './database/db';
 import { user } from './middlewares/user';
 import { superAdmin } from './middlewares/superAdmin';
-import { createService, getAllServices, updateService } from './controllers/services.controller';
+import { createService, deleteService, getAllServices, updateService } from './controllers/services.controller';
 import { logInUser, signInUser } from './controllers/auth.controller';
 import { admin } from './middlewares/admin';
 
@@ -28,6 +28,7 @@ app.post("/api/auth/login", logInUser)
 app.get("/api/services",getAllServices)
 app.post("/api/services",user,superAdmin, createService)
 app.put("/api/services/:id", updateService)
+app.delete("/api/services/:id", deleteService)
 
 AppDataSource.initialize()
     .then(() => {

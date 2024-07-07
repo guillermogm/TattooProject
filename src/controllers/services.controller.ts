@@ -85,3 +85,31 @@ export const updateService = async (req: Request, res: Response)=>{
         
     }
 }
+
+export const deleteService = async (req: Request, res: Response)=>{
+    try {
+        const idService= req.params.id
+        
+        const updatedService = await Service.delete(Number(idService))
+    
+        if(!updatedService.affected){
+            return res.status(400).json({
+                success:false,
+                message:"Service not found"
+            })
+        }
+
+        return res.status(200).json({
+            success:true,
+            message:"Service deleted successfully"
+        })
+
+    } catch (error) {
+
+        return res.status(500).json({
+            success:false,
+            message:"Error deleting service"
+        })
+        
+    }
+}
