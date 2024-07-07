@@ -14,15 +14,15 @@ const PORT = process.env.PORT || 4005
 
 app.use(express.json())
 
-app.get('/healthy', (req, res) => {
+app.get("/healthy", (req, res) => {
     res.status(205).json({
         success: true,
         message: "Server is working"
     })
 })
 // Auth
-app.post('/api/auth/register', signInUser)
-app.post('/api/auth/login', logInUser)
+app.post("/api/auth/register", signInUser)
+app.post("/api/auth/login", logInUser)
 //Services
 app.post("/api/appointments", createService)
 

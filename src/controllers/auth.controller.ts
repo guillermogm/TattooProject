@@ -75,7 +75,7 @@ export const logInUser = async (req: Request, res: Response) => {
         const user = await User.findOne({
             where: { email: email }
         })
-
+        
         if (!user) {
             return res.status(400).json({
                 success: false,
@@ -93,7 +93,7 @@ export const logInUser = async (req: Request, res: Response) => {
 
        const token = jwt.sign({
             id: user.id,
-            role: user.roleId
+            roleId: user.roleId
           }, process.env.SECRET as string, { expiresIn: '2h' });
           
 
