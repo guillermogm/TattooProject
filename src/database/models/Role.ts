@@ -5,6 +5,6 @@ export class Role {
     @PrimaryGeneratedColumn()
     id!:number
 
-    @Column({name:'service_name'})
+    @Column({name:"service_name"})
     title!:string
 }

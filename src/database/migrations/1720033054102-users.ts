@@ -34,7 +34,7 @@ export class Users1720033054102 implements MigrationInterface {
                     {
                         name: "password",
                         type:"varchar",
-                        length:"100"
+                        length:"255"
                     },
                     {
                         name: "role_id",

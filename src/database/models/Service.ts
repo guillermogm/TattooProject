@@ -5,10 +5,10 @@ export class Service {
     @PrimaryGeneratedColumn()
     id!:number
 
-    @Column({name:'service_name'})
+    @Column({name:"service_name"})
     title!:string
 
-    @Column({name:'description'})
+    @Column({name:"description"})
     description!:string
 
 
