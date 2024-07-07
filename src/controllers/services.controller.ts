@@ -3,10 +3,9 @@ import { Service } from "../database/models/Service"
 
 export const createService = async (req: Request, res: Response) => {
     try {
-        // saca info del body del json
         const serviceName = req.body.serviceName
         const description = req.body.description
-        // Comprobar campos vacios
+
         if (!serviceName) {
             return res.status(400).json(
                 {
@@ -15,13 +14,13 @@ export const createService = async (req: Request, res: Response) => {
                 }
             )
         }
-        // Guardar datos en la base de datos
+
         const newService = await Service.create({
             serviceName: serviceName,
             description: description
         }).save()
 
-        // Respuesta correcta de guardado
+
         res.json({
             success: true,
             message: "Service created",
