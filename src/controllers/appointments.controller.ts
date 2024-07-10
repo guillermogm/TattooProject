@@ -4,7 +4,7 @@ import { Appointment } from "../database/models/Appointment"
 export const createAppointment = async (req: Request, res: Response) => {
     try {
         const appointment = req.body.appointmentDate
-        const userId = req.body.userId
+        const userId = req.tokenData.id
         const serviceId = req.body.serviceId
 
         if (!appointment || !userId || !serviceId) {
@@ -31,6 +31,55 @@ export const createAppointment = async (req: Request, res: Response) => {
         return res.status(500).json({
             success: false,
             message: "Error creating Appointment",
+            error: error
+        })
+
+
+    }
+}
+
+export const updateAppointment = async (req: Request, res: Response) => {
+    try {
+        const appointmentId =req.params.id
+        const newInfo = req.body
+        const userId=req.tokenData.id
+        const roleId=req.tokenData.roleId
+
+        //Search if the appoinment is of the user
+        const findAppointment= await Appointment.findOne({
+            where: {
+                id:Number(appointmentId),
+                userId:userId
+            }
+        })
+        //If it's not from the user and is not admin Error
+        if(!findAppointment && roleId === 1){
+            return res.status(400).json({
+                success: true,
+                message: "You aren't authoritated to make this change"
+            })
+        }
+
+        const newAppointment = await Appointment.update({id:parseInt(appointmentId)}, newInfo)
+
+        if(!newAppointment.affected){
+            return res.status(400).json({
+                success: true,
+                message: "Not changes to appointments"
+            })
+        }
+
+        return res.status(201).json({
+            success: true,
+            message: "Appointment Updated"
+        })
+
+
+    } catch (error) {
+
+        return res.status(500).json({
+            success: false,
+            message: "Error updating Appointment",
             error: error
         })
 
