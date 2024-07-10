@@ -5,8 +5,7 @@ import { user } from './middlewares/user';
 import { superAdmin } from './middlewares/superAdmin';
 import { createService, deleteService, getAllServices, updateService } from './controllers/services.controller';
 import { logInUser, signInUser } from './controllers/auth.controller';
-import { admin } from './middlewares/admin';
-import { getProfileAppointments } from './controllers/appointments.controller';
+import { createAppointment, getAppointment, getProfileAppointments, updateAppointment } from './controllers/appointments.controller';
 
 
 
@@ -34,7 +33,10 @@ app.put("/api/services/:id",user,superAdmin, updateService)
 app.delete("/api/services/:id",user,superAdmin, deleteService)
 
 //Appointments
+app.post("/api/appointments",user,createAppointment)
 app.get("/api/appointments",user, getProfileAppointments)
+app.get("/api/appointments/:id",user,getAppointment)
+app.put("/api/appointments/:id",user, updateAppointment)
 
 AppDataSource.initialize()
     .then(() => {
