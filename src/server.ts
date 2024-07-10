@@ -6,7 +6,7 @@ import { superAdmin } from './middlewares/superAdmin';
 import { createService, deleteService, getAllServices, updateService } from './controllers/services.controller';
 import { logInUser, signInUser } from './controllers/auth.controller';
 import { admin } from './middlewares/admin';
-import { getAppointment, getProfileAppointments } from './controllers/appointments.controller';
+import { createAppointment, getAppointment, getProfileAppointments } from './controllers/appointments.controller';
 
 
 
@@ -34,6 +34,8 @@ app.put("/api/services/:id",user,superAdmin, updateService)
 app.delete("/api/services/:id",user,superAdmin, deleteService)
 
 //Appointments
+app.post("/api/appointments",user,createAppointment)
+app.put("/api/appointments",)
 app.get("/api/appointments",user, getProfileAppointments)
 app.get("/api/appointments/:id",user,getAppointment)
 
