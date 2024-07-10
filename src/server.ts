@@ -5,7 +5,6 @@ import { user } from './middlewares/user';
 import { superAdmin } from './middlewares/superAdmin';
 import { createService, deleteService, getAllServices, updateService } from './controllers/services.controller';
 import { logInUser, signInUser } from './controllers/auth.controller';
-import { admin } from './middlewares/admin';
 import { createAppointment, getAppointment, getProfileAppointments, updateAppointment } from './controllers/appointments.controller';
 
 
