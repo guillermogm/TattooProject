@@ -2,7 +2,7 @@ import { AppDataSource } from "../db";
 import { User } from "../models/User";
 import bcrypt from "bcrypt";
 
-export const userSeeders = async () => {
+export const userSeeder = async () => {
     try {
         await AppDataSource.initialize()
 
