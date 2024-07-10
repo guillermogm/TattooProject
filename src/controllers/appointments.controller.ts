@@ -131,3 +131,4 @@ export const getAppointment = async (req: Request, res: Response) => {
         })
     }
 }
+
