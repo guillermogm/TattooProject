@@ -9,7 +9,6 @@ export const signInUser = async (req: Request, res: Response) => {
         const lastName =req.body.lastName
         const email = req.body.email
         const password = req.body.password
-        const roleId= req.body.roleId
 
         if (!email) {
             return res.status(400).json(
@@ -42,8 +41,7 @@ export const signInUser = async (req: Request, res: Response) => {
             firstName:firstName,
             lastName:lastName,
             email: email,
-            password: hashedPass,
-            roleId:roleId
+            password: hashedPass
         }).save()
 
         res.json({
