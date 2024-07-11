@@ -105,3 +105,68 @@ export const updateUserProfile = async (req: Request, res: Response)=>{
         
     }
 }
+
+export const deleteUserById = async (req: Request, res: Response)=>{
+    try {
+        const idUser= req.params.id
+        
+        const deletedUser = await User.delete(Number(idUser))
+    
+        if(!deletedUser.affected){
+            return res.status(400).json({
+                success:false,
+                message:"User not found or already deleted"
+            })
+        }
+
+        return res.status(200).json({
+            success:true,
+            message:"User deleted successfully"
+        })
+
+    } catch (error) {
+
+        return res.status(500).json({
+            success:false,
+            message:"Error deleting User",
+            error:error
+        })
+        
+    }
+}
+
+export const updateUserRole = async (req: Request, res: Response)=>{
+    try {
+        const idUser= req.params.id
+        const newInfo=req.body
+
+        if(!newInfo.roleId || newInfo.roleId < 0 || newInfo.roleId > 3){
+            return res.status(400).json({
+                success:false,
+                message:"Not role found or role is incorrect"
+            })
+        }
+        const updatedUser = await User.update(Number(idUser), newInfo)
+
+        if(!updatedUser.affected){
+            return res.status(400).json({
+                success:false,
+                message:"Not changes made"
+            })
+        }
+
+        return res.status(200).json({
+            success:true,
+            message:"User Updated successfully"
+        })
+
+    } catch (error) {
+
+        return res.status(500).json({
+            success:false,
+            message:"Error updating user",
+            error:error
+        })
+        
+    }
+}
