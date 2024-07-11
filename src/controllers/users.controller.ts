@@ -55,3 +55,33 @@ export const getUserProfile = async (req: Request, res: Response) => {
         })
     }
 }
+
+export const updateUserProfile = async (req: Request, res: Response)=>{
+    try {
+        const idUser= req.tokenData.id
+        const newInfo=req.body
+        
+        const updatedUser = await User.update(Number(idUser), newInfo)
+    
+        if(!updatedUser.affected){
+            return res.status(400).json({
+                success:false,
+                message:"User not found or not rows affected"
+            })
+        }
+
+        return res.status(200).json({
+            success:true,
+            message:"User Updated successfully"
+        })
+
+    } catch (error) {
+
+        return res.status(500).json({
+            success:false,
+            message:"Error updating user",
+            error:error
+        })
+        
+    }
+}
