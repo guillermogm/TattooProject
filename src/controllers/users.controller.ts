@@ -30,3 +30,28 @@ export const getAllUsers = async (req: Request, res: Response) => {
         })
     }
 }
+
+export const getUserProfile = async (req: Request, res: Response) => {
+    try {
+        const userId= req.tokenData.id
+
+        const user = await User.findOne({
+            where:{
+                id:userId
+            }
+        })
+
+        return res.status(200).json({
+            success: true,
+            message: "User retrived",
+            data: user
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Error getting User",
+            error: error
+        })
+    }
+}

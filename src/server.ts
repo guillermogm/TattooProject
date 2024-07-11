@@ -6,7 +6,7 @@ import { superAdmin } from './middlewares/superAdmin';
 import { createService, deleteService, getAllServices, updateService } from './controllers/services.controller';
 import { logInUser, signInUser } from './controllers/auth.controller';
 import { createAppointment, getAppointment, getProfileAppointments, updateAppointment } from './controllers/appointments.controller';
-import { getAllUsers } from './controllers/users.controller';
+import { getAllUsers, getUserProfile } from './controllers/users.controller';
 
 
 
@@ -41,6 +41,7 @@ app.put("/api/appointments/:id",user, updateAppointment)
 
 //Users
 app.get("/api/users",user,superAdmin, getAllUsers)
+app.get("/api/users/profile",user, getUserProfile)
 
 AppDataSource.initialize()
     .then(() => {
