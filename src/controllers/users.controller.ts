@@ -3,6 +3,26 @@ import { User } from "../database/models/User"
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
+        const userEmail=req.query.email as string
+
+        if(userEmail){
+            const findUser= await User.findOne({
+                where:{
+                    email: userEmail
+                }
+            })
+            if(!findUser){
+                return res.status(400).json({
+                    success: false,
+                    message: "This email doesn't exist"
+                })
+            }
+            return res.status(200).json({
+                success: true,
+                message: "User retrived",
+                data: findUser
+            })
+        }
         //Pagination
         let limit = Number(req.query.limit) || 5
         const page = Number(req.query.page) || 1
