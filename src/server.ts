@@ -6,6 +6,7 @@ import { superAdmin } from './middlewares/superAdmin';
 import { createService, deleteService, getAllServices, updateService } from './controllers/services.controller';
 import { logInUser, signInUser } from './controllers/auth.controller';
 import { createAppointment, getAppointment, getProfileAppointments, updateAppointment } from './controllers/appointments.controller';
+import { deleteUserById, getAllUsers, getUserProfile, updateUserProfile, updateUserRole } from './controllers/users.controller';
 
 
 
@@ -37,6 +38,13 @@ app.post("/api/appointments",user,createAppointment)
 app.get("/api/appointments",user, getProfileAppointments)
 app.get("/api/appointments/:id",user,getAppointment)
 app.put("/api/appointments/:id",user, updateAppointment)
+
+//Users
+app.get("/api/users",user,superAdmin, getAllUsers)
+app.get("/api/users/profile",user, getUserProfile)
+app.put("/api/users/profile",user, updateUserProfile)
+app.delete("/api/users/:id",user,superAdmin, deleteUserById)
+app.put("/api/users/:id/role",user,superAdmin, updateUserRole)
 
 AppDataSource.initialize()
     .then(() => {
