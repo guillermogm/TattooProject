@@ -6,11 +6,10 @@
   <ol>
     <li><a href="#about-the-project">About the project 📋</a></li>
     <li><a href="#getting-started">Getting started 🚀</a></li>
-    <li><a href="#deploy">Deploy 🚀</a></li>
+    <li><a href="#deploy">Deploy 🌐</a></li>
     <li><a href="#stack">Stack ⚓</a></li>
-    <li><a href="#diagrama-bd">Diagrama</a></li>
-    <li><a href="#instalación-en-local">Instalación</a></li>
-    <li><a href="#endpoints">Endpoints</a></li>
+    <li><a href="#diagrama-bd">DB Diagram 📈</a></li>
+    <li><a href="#endpoints">Endpoints 📌</a></li>
     <li><a href="#futuras-funcionalidades">Futuras funcionalidades</a></li>
     <li><a href="#contribuciones">Contribuciones</a></li>
     <li><a href="#licencia">Licencia</a></li>
@@ -38,7 +37,7 @@ This is a Backend made for a fictitious tattoo Studio. This app contains users, 
 
 <div id="deploy"></div>  
 
-## Deploy (Online)🚀
+## Deploy (Online)🌐
 <div align="center">
     <a href="https://www.google.com"><strong>Url a producción </strong></a>🚀🚀🚀 
 </div>
@@ -60,58 +59,142 @@ Tecnologies used:
 <a href="https://nodejs.org/es/">
     <img src= "https://img.shields.io/badge/node.js-026E00?style=for-the-badge&logo=node.js&logoColor=white"/>
 </a>
-<a href="https://developer.mozilla.org/es/docs/Web/JavaScript">
-    <img src= "https://img.shields.io/badge/javascipt-EFD81D?style=for-the-badge&logo=javascript&logoColor=black"/>
+<a href="https://www.typescriptlang.org/">
+    <img src= "https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/>
 </a>
  </div>
 
+<div id="diagrama-bd"></div>
 
-## Diagrama BD
-!['imagen-db'](./images/sampleDb.png)
+## DB Diagram 	📈
+!['imagen-db'](./images/Db-diagram.png)
 
-## Instalación en local
-1. Clonar el repositorio
-2. ` $ npm install `
-3. Conectamos nuestro repositorio con la base de datos 
-4. ``` $ Ejecutamos las migraciones ``` 
-5. ``` $ Ejecutamos los seeders ``` 
-6. ``` $ npm run dev ``` 
-7. ...
+<div id="endpoints"></div>
 
-## Endpoints
+## Endpoints 📌
+There is an export with all the endpoints in Thunderclient in the folder HTTP. In case you use another tecnology, all the endspoints are down here.
 <details>
 <summary>Endpoints</summary>
 
 - AUTH
     - REGISTER
 
-            POST http://localhost:3000/api/register
+            POST http://localhost:4005/api/auth/register
         body:
         ``` js
             {
-                "user": "David",
-                "email": "david@david.com",
-                "password": "princes"
+                "firstName":"Sarah",
+                "lastName":"Miller",
+                "email": "sarahmiller@sarahmiller.com",
+                "password": "123456789"
             }
         ```
 
     - LOGIN
 
-            POST http://localhost:3000/api/login  
+            POST http://localhost:4005/api/auth/login  
         body:
         ``` js
             {
-                "user": "David",
-                "email": "david@david.com",
-                "password": "princes"
+                "email": "william@william.com",
+                "password": "123456789"
             }
         ```
-- RUTINAS
-    - RECUPERAR RUTINAS  
+- SERVICES
 
-            GET http://localhost:3000/api/rutina
+    - GET ALL SERVICES
 
-    - ...
+            GET http://localhost:4005/api/services
+
+    - CREATE SERVICE (super_admin)
+
+            POST http://localhost:4005/api/services
+        body:
+        ``` js
+            {
+                "serviceName":"body tattoo",
+                "description":"duck in colored ink"
+            }
+        ```
+
+    - UPDATE SERVICE (super_admin)
+
+            PUT http://localhost:4005/api/services/4
+        body:
+        ``` js
+            {
+                "serviceName":"Head tattoo"
+            }
+        ```
+
+    - DELETE SERVICE (super_admin)
+
+            DELETE http://localhost:4005/api/services/3
+
+- USERS
+
+    - GET ALL USERS WITH PAGINATION OR SEARCH WITH EMAIL (super_admin)
+
+            GET http://localhost:4005/api/users(Optional)?limit=6&page=2 or ?email=william@william.com
+
+    - GET USER PROFILE (user)
+
+            GET http://localhost:4005/api/users/profile
+
+    - UPDATE USER PROFILE (user)
+
+            PUT http://localhost:4005/api/users/profile
+        body:
+        ``` js
+            {
+                "firstName":"Adam"
+            }
+        ```
+
+    - DELETE User (super_admin)
+
+            DELETE http://localhost:4005/api/users/15
+
+    - UPDATE USER ROLE (super_admin)
+
+            PUT http://localhost:4005/api/users/12/role
+        body:
+        ``` js
+            {
+                "roleId":2
+            }
+        ```
+
+- APPOINTMENTS
+
+    - GET PROFILE APPOINTMENTS (user)
+
+            GET http://localhost:4005/api/appointments
+
+    - CREATE APPOINTMENT (user)
+
+            POST http://localhost:4005/api/appointments
+        body:
+        ``` js
+            {
+                "appointmentDate":"2024-07-30 20:10:00",
+                "serviceId":2
+            }
+        ```
+    - GET PROFILE APPOINTMENT (user, super_admin can get any appointment)
+
+            GET http://localhost:4005/api/appointments/2
+
+    - UPDATE APPOINTMENT (user)
+
+            PUT http://localhost:4005/api/appointments/4
+        body:
+        ``` js
+            {
+                "appointmentDate":"2024-07-26 10:16:00",
+                "serviceId":"4"
+            }
+        ```
 </details>
 
 ## Futuras funcionalidades
@@ -150,13 +233,6 @@ Para conseguir mi objetivo he recopilado información de:
 - link a documentacion de librerias externas
 - ...
 
-## Desarrollo:
-
-``` js
- const developer = "datata";
-
- console.log("Desarrollado por: " + datata);
-```  
 
 ## Agradecimientos:
 

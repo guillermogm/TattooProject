@@ -55,7 +55,7 @@ export const updateAppointment = async (req: Request, res: Response) => {
         //If it's not from the user and is not admin Error
         if(!findAppointment && roleId === 1){
             return res.status(400).json({
-                success: true,
+                success: false,
                 message: "You aren't authoritated to make this change"
             })
         }
