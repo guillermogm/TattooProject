@@ -10,13 +10,11 @@
     <li><a href="#stack">Stack ⚓</a></li>
     <li><a href="#diagrama-bd">DB Diagram 📈</a></li>
     <li><a href="#endpoints">Endpoints 📌</a></li>
-    <li><a href="#futuras-funcionalidades">Futuras funcionalidades</a></li>
-    <li><a href="#contribuciones">Contribuciones</a></li>
-    <li><a href="#licencia">Licencia</a></li>
-    <li><a href="#webgrafia">Webgrafia</a></li>
-    <li><a href="#desarrollo">Desarrollo</a></li>
-    <li><a href="#agradecimientos">Agradecimientos</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#futuras-funcionalidades">Future features ⚙️</a></li>
+    <li><a href="#contribuciones">Suggestions and contributions ❓</a></li>
+    <li><a href="#licencia">License 🔑</a></li>
+    <li><a href="#author">Author ✍️</a></li>
+    <li><a href="#acknowledgments">Acknowledgments 🎓</a></li>
   </ol>
 </details>
 
@@ -197,57 +195,47 @@ There is an export with all the endpoints in Thunderclient in the folder HTTP. I
         ```
 </details>
 
-## Futuras funcionalidades
-[ ] Añadir create book  
-[ ] Añadir logs  con winston  
-[ ] Validaciones de la solicitud con express-validator  
-[ ] ...
+<div id="futuras-funcionalidades"> </div>
 
-## Contribuciones
-Las sugerencias y aportaciones son siempre bienvenidas.  
+## Future features ⚙️
+[ ] Add cascading deleting .
+[ ] Collect all errors log in a file.
 
-Puedes hacerlo de dos maneras:
+<div id="contribuciones"></div>
 
-1. Abriendo una issue
-2. Crea un fork del repositorio
-    - Crea una nueva rama  
+## Suggestions and contributions ❓
+Suggestions and contributions are always welcome.
+
+You can do it in two different ways:
+
+1. Create a github issue.
+2. Create a fork of this repository
+    - New branch 
         ```
-        $ git checkout -b feature/nombreUsuario-mejora
+        $ git checkout -b feature/userName-improvement
         ```
-    - Haz un commit con tus cambios 
+    - Commit with your changes 
         ```
-        $ git commit -m 'feat: mejora X cosa'
+        $ git commit -m 'feat: upgrade X feature'
         ```
-    - Haz push a la rama 
+    - Push the branch 
         ```
-        $ git push origin feature/nombreUsuario-mejora
+        $ git push origin feature/userName-improvement
         ```
-    - Abre una solicitud de Pull Request
+    - Open a Pull Request.
 
-## Licencia
-Este proyecto se encuentra bajo licencia de "Mi Nombre"
+<div id="licencia"></div>
 
-## Webgrafia:
-Para conseguir mi objetivo he recopilado información de:
-- link a repositorios 
-- link a documentacion de librerias externas
-- ...
+## License 🔑
+This project is licensed by guillermogm
 
+ <div id="author"></div>
 
-## Agradecimientos:
+## Author ✍️
+* Guillermo Gómez:
+    * [GitHub](https://github.com/guillermogm)
 
-Agradezco a mis compañeros el tiempo dedicado a este proyecto:
+<div id="acknowledgments"></div>
 
-- *Jose*  
-<a href="https://github.com/Dave86dev" target="_blank"><img src="https://img.shields.io/badge/github-24292F?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> 
-
-- **David**  
-<a href="https://www.github.com/userGithub/" target="_blank"><img src="https://img.shields.io/badge/github-24292F?style=for-the-badge&logo=github&logoColor=red" target="_blank"></a>
-
-- ***Mara***  
-<a href="https://www.github.com/userGithub/" target="_blank"><img src="https://img.shields.io/badge/github-24292F?style=for-the-badge&logo=github&logoColor=green" target="_blank"></a> 
-
-## Contacto
-<a href = "mailto:micorreoelectronico@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
-<a href="https://www.linkedin.com/in/linkedinUser/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
-</p>
+## Acknowledgements 🎓
+* A shoutout to the teachers at Geekshubs Academy.
