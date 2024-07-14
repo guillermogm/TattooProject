@@ -199,8 +199,8 @@ There is an export with all the endpoints in Thunderclient in the folder HTTP. I
 <div id="futuras-funcionalidades"> </div>
 
 ## Future features ⚙️
-[ ] Add cascading deleting .
-[ ] Collect all errors log in a file.
+[ ] Add cascading deleting  
+[ ] Collect all errors log in a file
 
 <div id="contribuciones"></div>
 
