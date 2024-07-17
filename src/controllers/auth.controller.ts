@@ -30,7 +30,7 @@ export const signInUser = async (req: Request, res: Response) => {
             return res.status(400).json(
                 {
                     success: false,
-                    message: "Password must be beetween 8 and 12"
+                    message: "Password must be beetween 8 and 20"
                 }
             )
         }

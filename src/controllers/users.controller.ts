@@ -1,5 +1,7 @@
 import { Request, Response } from "express"
 import { User } from "../database/models/User"
+import bcrypt from "bcrypt"
+import { log } from "console"
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
@@ -79,10 +81,28 @@ export const getUserProfile = async (req: Request, res: Response) => {
 export const updateUserProfile = async (req: Request, res: Response)=>{
     try {
         const idUser= req.tokenData.id
-        const newInfo=req.body
+        const {firstName,lastName, email, password} =req.body
+        let hashedPass
+        if(password){
+            if (password.length < 8 || password.length > 20) {
+                return res.status(400).json(
+                    {
+                        success: false,
+                        message: "Password must be beetween 8 and 20"
+                    }
+                )
+            }
+            hashedPass = bcrypt.hashSync(password, 10)
+        }
+        const updatedUser = await User.update(Number(idUser), 
+        {
+        firstName:firstName, 
+        lastName:lastName,
+        email:email,
+        password:hashedPass
+        })
+        console.log(updatedUser.affected);
         
-        const updatedUser = await User.update(Number(idUser), newInfo)
-    
         if(!updatedUser.affected){
             return res.status(400).json({
                 success:false,
@@ -137,16 +157,17 @@ export const deleteUserById = async (req: Request, res: Response)=>{
 
 export const updateUserRole = async (req: Request, res: Response)=>{
     try {
+        
         const idUser= req.params.id
-        const newInfo=req.body
+        const roleId=req.body.roleId
 
-        if(!newInfo.roleId || newInfo.roleId < 0 || newInfo.roleId > 3){
-            return res.status(400).json({
+        if(!roleId){
+            return res.status(404).json({
                 success:false,
                 message:"Not role found or role is incorrect"
             })
         }
-        const updatedUser = await User.update(Number(idUser), newInfo)
+        const updatedUser = await User.update(Number(idUser), {roleId:roleId})
 
         if(!updatedUser.affected){
             return res.status(400).json({

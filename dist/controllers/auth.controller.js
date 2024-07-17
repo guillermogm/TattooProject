@@ -37,7 +37,7 @@ const signInUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         if (password.length < 8 || password.length > 20) {
             return res.status(400).json({
                 success: false,
-                message: "Password must be beetween 8 and 12"
+                message: "Password must be beetween 8 and 20"
             });
         }
         const hashedPass = bcrypt_1.default.hashSync(password, 10);

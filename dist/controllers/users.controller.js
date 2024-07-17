@@ -8,9 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateUserRole = exports.deleteUserById = exports.updateUserProfile = exports.getUserProfile = exports.getAllUsers = void 0;
 const User_1 = require("../database/models/User");
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const userEmail = req.query.email;
@@ -83,8 +87,24 @@ exports.getUserProfile = getUserProfile;
 const updateUserProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const idUser = req.tokenData.id;
-        const newInfo = req.body;
-        const updatedUser = yield User_1.User.update(Number(idUser), newInfo);
+        const { firstName, lastName, email, password } = req.body;
+        let hashedPass;
+        if (password) {
+            if (password.length < 8 || password.length > 20) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Password must be beetween 8 and 20"
+                });
+            }
+            hashedPass = bcrypt_1.default.hashSync(password, 10);
+        }
+        const updatedUser = yield User_1.User.update(Number(idUser), {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: hashedPass
+        });
+        console.log(updatedUser.affected);
         if (!updatedUser.affected) {
             return res.status(400).json({
                 success: false,
@@ -132,14 +152,14 @@ exports.deleteUserById = deleteUserById;
 const updateUserRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const idUser = req.params.id;
-        const newInfo = req.body;
-        if (!newInfo.roleId || newInfo.roleId < 0 || newInfo.roleId > 3) {
-            return res.status(400).json({
+        const roleId = req.body.roleId;
+        if (!roleId) {
+            return res.status(404).json({
                 success: false,
                 message: "Not role found or role is incorrect"
             });
         }
-        const updatedUser = yield User_1.User.update(Number(idUser), newInfo);
+        const updatedUser = yield User_1.User.update(Number(idUser), { roleId: roleId });
         if (!updatedUser.affected) {
             return res.status(400).json({
                 success: false,
