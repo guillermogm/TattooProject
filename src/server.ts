@@ -7,14 +7,17 @@ import { createService, deleteService, getAllServices, updateService } from './c
 import { logInUser, signInUser } from './controllers/auth.controller';
 import { createAppointment, getAppointment, getProfileAppointments, updateAppointment } from './controllers/appointments.controller';
 import { deleteUserById, getAllUsers, getUserProfile, updateUserProfile, updateUserRole } from './controllers/users.controller';
-
+import cors from "cors";
 
 
 
 const app =express();
 const PORT = process.env.PORT || 4005
 
+
 app.use(express.json())
+
+app.use(cors())
 
 app.get("/healthy", (req, res) => {
     res.status(205).json({
