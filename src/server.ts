@@ -12,12 +12,13 @@ import cors from "cors";
 
 
 const app =express();
-const PORT = process.env.PORT || 4005
+app.use(cors())
+
+const PORT = process.env.PORT || 4006
 
 
 app.use(express.json())
 
-app.use(cors())
 
 app.get("/healthy", (req, res) => {
     res.status(205).json({

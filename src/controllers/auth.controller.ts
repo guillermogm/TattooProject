@@ -44,14 +44,13 @@ export const signInUser = async (req: Request, res: Response) => {
             password: hashedPass
         }).save()
 
-        res.json({
+       return res.status(200).json({
             success: true,
             message: "User created",
-            data: newUser
         })
     } catch (error) {
 
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: "Error creating User",
             error: error
