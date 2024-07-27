@@ -29,7 +29,8 @@ export class Appointments1720033588370 implements MigrationInterface {
                 foreignKeys:[{
                     columnNames:['user_id'],
                     referencedTableName:'users',
-                    referencedColumnNames:['id']
+                    referencedColumnNames:['id'],
+                    onDelete: "CASCADE"
                 },
                 {columnNames:['service_id'],
                 referencedTableName:'services',
