@@ -5,10 +5,10 @@ export const createAppointment = async (req: Request, res: Response) => {
     try {
         const appointment = req.body.appointmentDate
         const userId = req.tokenData.id
-        const serviceId = req.body.serviceId
+        const serviceId = +req.body.serviceId
 
         if (!appointment || !userId || !serviceId) {
-            res.status(400).json({
+           return res.status(400).json({
                 success: false,
                 message: "Appointment date, user id and service Id are required"
             })

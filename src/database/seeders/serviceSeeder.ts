@@ -17,14 +17,14 @@ export const serviceSeeder = async () => {
 
         service2.id = 2;
         service2.serviceName = "Tattoo from catalogue"
-        service2.description = "We offer tattoos based on predefined designs in our Catalogue. Customers can choose from a variety of stylish and proven options."
+        service2.description = "We offer tattoos based on predefined designs in our Catalogue. Customers can choose from a variety of stylish and proven options. All of our tattoos are desigened by the artists at the studio"
         await service2.save()
 
         const service3 = new Service();
 
         service3.id = 3;
         service3.serviceName = "Restoration and rejuvenation of tattoos"
-        service3.description= "We specialize in the restoration and rejuvenation of existing tattoos. Our experts work to improve and renew old tattoos, restoring their vitality." 
+        service3.description= "We specialize in the restoration and rejuvenation of existing tattoos. Our experts work to improve and renew old tattoos, restoring their vitality. They will look like the first day." 
 
         await service3.save()
         
