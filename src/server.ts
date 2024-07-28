@@ -5,7 +5,7 @@ import { user } from './middlewares/user';
 import { superAdmin } from './middlewares/superAdmin';
 import { createService, deleteService, getAllServices, updateService } from './controllers/services.controller';
 import { logInUser, signInUser } from './controllers/auth.controller';
-import { createAppointment, getAppointment, getProfileAppointments, updateAppointment } from './controllers/appointments.controller';
+import { createAppointment, deleteProfileAppointment, getAppointment, getProfileAppointments, updateAppointment } from './controllers/appointments.controller';
 import { deleteUserById, getAllUsers, getUserProfile, updateUserProfile, updateUserRole } from './controllers/users.controller';
 import cors from "cors";
 
@@ -42,7 +42,7 @@ app.post("/api/appointments",user,createAppointment)
 app.get("/api/appointments",user, getProfileAppointments)
 app.get("/api/appointments/:id",user,getAppointment)
 app.put("/api/appointments/:id",user, updateAppointment)
-
+app.delete("/api/appointments/:id",user, deleteProfileAppointment)
 //Users
 app.get("/api/users",user,superAdmin, getAllUsers)
 app.get("/api/users/profile",user, getUserProfile)

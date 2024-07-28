@@ -218,3 +218,24 @@ export const getAppointment = async (req: Request, res: Response) => {
     }
 }
 
+export const deleteProfileAppointment = async (req: Request, res: Response) => {
+    try {
+        const userId = req.tokenData.id
+        const appointmentId=+req.params.id
+
+        await Appointment.delete({id:appointmentId, userId:userId})
+
+        return res.status(200).json({
+            success: true,
+            message: "Appointment delete successfully",
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Error getting Appointments",
+            error: error
+        })
+    }
+}
+
